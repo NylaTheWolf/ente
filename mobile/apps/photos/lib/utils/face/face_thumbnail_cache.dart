@@ -111,6 +111,7 @@ Future<Map<String, Uint8List>?> getCachedFaceCrops(
   try {
     final faceIdToCrop = <String, Uint8List>{};
     final facesWithoutCrops = <String, FaceBox>{};
+    _logger.info("Now getting cached face crops for ${faces.length} faces");
     for (final face in faces) {
       final Uint8List? cachedFace =
           _checkInMemoryCachedCropForFaceID(face.faceID);
@@ -149,6 +150,7 @@ Future<Map<String, Uint8List>?> getCachedFaceCrops(
       }
     }
     if (facesWithoutCrops.isEmpty) {
+      _logger.info("All face crops gotten from cache");
       return faceIdToCrop;
     }
 
@@ -231,7 +233,7 @@ Future<Map<String, Uint8List>?> getCachedFaceCrops(
         s,
       );
     } else {
-      _logger.info(
+      _logger.severe(
         "Stopped getting face crops for faceIDs: ${faces.map((face) => face.faceID).toList()} due to $e",
       );
     }
@@ -330,6 +332,9 @@ Future<Map<String, Uint8List>?> _getFaceCrops(
   Map<String, FaceBox> faceBoxeMap, {
   bool useFullFile = true,
 }) async {
+  _logger.info(
+    "`_getFaceCrops` started for ${file.uploadedFileID} and ${faceBoxeMap.length} faces",
+  );
   late String? imagePath;
   if (useFullFile && file.fileType != FileType.video) {
     final File? ioFile = await getFile(file);

@@ -323,6 +323,7 @@ class _FacesItemWidgetState extends State<FacesItemWidget> {
     final mlDataDB = MLDataDB.instance;
     final faces =
         await mlDataDB.getFacesForGivenFileID(widget.file.uploadedFileID!);
+    _logger.info('Fetched ${faces?.length} faces');
 
     if (faces == null) {
       return _FaceDataResult(
@@ -336,8 +337,15 @@ class _FacesItemWidgetState extends State<FacesItemWidget> {
     final faceIdsToClusterIds = await mlDataDB.getFaceIdsToClusterIds(
       faces.map((face) => face.faceID).toList(),
     );
+    _logger
+        .info('Fetched ${faceIdsToClusterIds.length} face IDs to cluster IDs');
+
+    _logger.info('Face IDs to Cluster IDs: $faceIdsToClusterIds');
     final persons = await PersonService.instance.getPersonsMap();
+    _logger.info('Fetched ${persons.length} persons');
     final clusterIDToPerson = await mlDataDB.getClusterIDToPersonID();
+    _logger.info('Fetched ${clusterIDToPerson.length} cluster IDs to person IDs');
+    _logger.info("Now getting cached face crops");
     final faceCrops =
         await getCachedFaceCrops(widget.file, faces, useTempCache: true);
     final defaultFaces = <Face>[];
