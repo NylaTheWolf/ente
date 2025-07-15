@@ -37,6 +37,9 @@ class FaceThumbnailGenerator extends SuperIsolate {
     String imagePath,
     List<FaceBox> faceBoxes,
   ) async {
+    _logger.info(
+      "Generating face thumbnails for ${faceBoxes.length} face boxes in $imagePath",
+    );
     final List<Map<String, dynamic>> faceBoxesJson =
         faceBoxes.map((box) => box.toJson()).toList();
     final List<Uint8List> faces = await runInIsolate(
@@ -46,9 +49,10 @@ class FaceThumbnailGenerator extends SuperIsolate {
         'faceBoxesList': faceBoxesJson,
       },
     ).then((value) => value.cast<Uint8List>());
+    _logger.info("Generated face thumbnails");
     final compressedFaces =
         await compressFaceThumbnails({'listPngBytes': faces});
-    _logger.fine(
+    _logger.info(
       "Compressed face thumbnails from sizes ${faces.map((e) => e.length / 1024).toList()} to ${compressedFaces.map((e) => e.length / 1024).toList()} kilobytes",
     );
     return compressedFaces;
