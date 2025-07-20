@@ -359,6 +359,10 @@ class MLDataDB with SqlDbBase implements IMLDataDB<int> {
           }
         }
         return mapRowToFace(faceMaps.first);
+      } else if (clusterID == null) {
+        _logger.severe(
+          "Didn't find any faces for personID $personID in `getCoverFaceForPerson`. fileID: $fileId, clusterIDs: $clusterIDs",
+        );
       }
     }
     if (clusterID != null) {
@@ -380,11 +384,19 @@ class MLDataDB with SqlDbBase implements IMLDataDB<int> {
             return face;
           }
         }
+      } else {
+        _logger.severe(
+          "Didn't find any faces for clusterID $clusterID in `getCoverFaceForPerson`. faces: $faces",
+        );
       }
     }
     if (personID == null && clusterID == null) {
+      _logger.severe("personID and clusterID cannot be null both");
       throw Exception("personID and clusterID cannot be null");
     }
+    _logger.severe(
+      "Something went wrong finding a face from `getCoverFaceForPerson` (personID: $personID, clusterID: $clusterID)",
+    );
     return null;
   }
 
