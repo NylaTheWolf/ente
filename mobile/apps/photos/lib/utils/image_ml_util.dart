@@ -146,19 +146,42 @@ Future<List<Uint8List>> generateFaceThumbnailsUsingCanvas(
   List<FaceBox> faceBoxes,
 ) async {
   int i = 0; // Index of the faceBox, initialized here for logging purposes
+
+  _logger.info(
+    "generateFaceThumbnailsUsingCanvas START: Processing ${faceBoxes.length} face boxes from $imagePath",
+  );
+
   try {
+    _logger.info("Decoding image from path: $imagePath");
+    final stopwatch = Stopwatch()..start();
+
     final decodedImage = await decodeImageFromPath(
       imagePath,
       includeRgbaBytes: false,
     );
     final Image img = decodedImage.image;
+
+    stopwatch.stop();
+    _logger.info(
+      "Image decoded successfully: ${img.width}x${img.height} in ${stopwatch.elapsedMilliseconds}ms",
+    );
     final futureFaceThumbnails = <Future<Uint8List>>[];
+    _logger.info("Starting face crop processing for ${faceBoxes.length} faces");
+
     for (final faceBox in faceBoxes) {
+      _logger.info(
+        "Processing face $i/${faceBoxes.length}: relative box=(${faceBox.x.toStringAsFixed(3)}, ${faceBox.y.toStringAsFixed(3)}, ${faceBox.width.toStringAsFixed(3)}, ${faceBox.height.toStringAsFixed(3)})",
+      );
+
       // Note that the faceBox values are relative to the image size, so we need to convert them to absolute values first
       final double xMinAbs = faceBox.x * img.width;
       final double yMinAbs = faceBox.y * img.height;
       final double widthAbs = faceBox.width * img.width;
       final double heightAbs = faceBox.height * img.height;
+
+      _logger.info(
+        "Face $i absolute coordinates: (${xMinAbs.toStringAsFixed(1)}, ${yMinAbs.toStringAsFixed(1)}, ${widthAbs.toStringAsFixed(1)}, ${heightAbs.toStringAsFixed(1)})",
+      );
 
       // Calculate the crop values by adding some padding around the face and making sure it's centered
       const regularPadding = 0.4;
@@ -178,6 +201,10 @@ Future<List<Uint8List>> generateFaceThumbnailsUsingCanvas(
       final widthCropSafe = widthCrop.clamp(0, img.width - xCropSafe);
       final heightCropSafe = heightCrop.clamp(0, img.height - yCropSafe);
 
+      _logger.info(
+        "Face $i final crop area: (${xCropSafe.toStringAsFixed(1)}, ${yCropSafe.toStringAsFixed(1)}, ${widthCropSafe.toStringAsFixed(1)}, ${heightCropSafe.toStringAsFixed(1)})",
+      );
+
       futureFaceThumbnails.add(
         _cropAndEncodeCanvas(
           img,
@@ -189,12 +216,22 @@ Future<List<Uint8List>> generateFaceThumbnailsUsingCanvas(
       );
       i++;
     }
+
+    _logger.info("All face crop futures created, waiting for completion...");
+    final cropStopwatch = Stopwatch()..start();
+
     final List<Uint8List> faceThumbnails =
         await Future.wait(futureFaceThumbnails);
+
+    cropStopwatch.stop();
+    _logger.info(
+      "generateFaceThumbnailsUsingCanvas END: Generated ${faceThumbnails.length} thumbnails in ${cropStopwatch.elapsedMilliseconds}ms, sizes: ${faceThumbnails.map((t) => '${(t.length / 1024).toStringAsFixed(1)}KB').toList()}",
+    );
+
     return faceThumbnails;
   } catch (e, s) {
     _logger.severe(
-      'Error generating face thumbnails. cropImage problematic input argument: ${i}th facebox: ${faceBoxes[i].toString()}',
+      'generateFaceThumbnailsUsingCanvas ERROR: Failed at face $i/${faceBoxes.length}. FaceBox: ${i < faceBoxes.length ? faceBoxes[i].toString() : "index out of bounds"}. ImagePath: $imagePath',
       e,
       s,
     );
@@ -533,6 +570,11 @@ Future<Uint8List> _cropAndEncodeCanvas(
   required double width,
   required double height,
 }) async {
+  _logger.info(
+    "_cropAndEncodeCanvas: Cropping ${image.width}x${image.height} image at (${x.toStringAsFixed(1)}, ${y.toStringAsFixed(1)}) with size ${width.toStringAsFixed(1)}x${height.toStringAsFixed(1)}",
+  );
+
+  final cropStopwatch = Stopwatch()..start();
   final croppedImage = await _cropImage(
     image,
     x: x,
@@ -540,14 +582,39 @@ Future<Uint8List> _cropAndEncodeCanvas(
     width: width,
     height: height,
   );
-  return await _encodeImageToPng(croppedImage);
+  cropStopwatch.stop();
+
+  _logger.info(
+    "_cropAndEncodeCanvas: Crop completed in ${cropStopwatch.elapsedMilliseconds}ms, result: ${croppedImage.width}x${croppedImage.height}",
+  );
+
+  final encodeStopwatch = Stopwatch()..start();
+  final result = await _encodeImageToPng(croppedImage);
+  encodeStopwatch.stop();
+
+  _logger.info(
+    "_cropAndEncodeCanvas: PNG encoding completed in ${encodeStopwatch.elapsedMilliseconds}ms, size: ${(result.length / 1024).toStringAsFixed(1)}KB",
+  );
+
+  return result;
 }
 
-Future<List<Uint8List>> compressFaceThumbnails(Map args) async {
+Future<List<Uint8List>> compressFaceThumbnails(Map args, {int? fileID}) async {
+  _logger.info("[$fileID] compressFaceThumbnails START");
   final listPngBytes = args['listPngBytes'] as List<Uint8List>;
   final List<Future<Uint8List>> compressedBytesList = [];
+
+  _logger.info(
+    "[$fileID] compressFaceThumbnails START: Processing ${listPngBytes.length} thumbnails with quality=$_faceThumbnailCompressionQuality, minDimension=$_faceThumbnailMinDimension",
+  );
+
   try {
-    for (final pngBytes in listPngBytes) {
+    for (int i = 0; i < listPngBytes.length; i++) {
+      final pngBytes = listPngBytes[i];
+      _logger.info(
+        "[$fileID] Compressing thumbnail $i/${listPngBytes.length}, original size: ${(pngBytes.length / 1024).toStringAsFixed(1)}KB",
+      );
+
       final compressedBytes = FlutterImageCompress.compressWithList(
         pngBytes,
         quality: _faceThumbnailCompressionQuality,
@@ -557,10 +624,29 @@ Future<List<Uint8List>> compressFaceThumbnails(Map args) async {
       );
       compressedBytesList.add(compressedBytes);
     }
-    return await Future.wait(compressedBytesList);
+
+    _logger.info(
+      "[$fileID] Starting Future.wait for ${compressedBytesList.length} compression tasks",
+    );
+    final stopwatch = Stopwatch()..start();
+
+    final result = await Future.wait(compressedBytesList);
+
+    stopwatch.stop();
+    _logger.info(
+      "[$fileID] compressFaceThumbnails END: All ${result.length} compressions completed in ${stopwatch.elapsedMilliseconds}ms",
+    );
+
+    for (int i = 0; i < result.length; i++) {
+      _logger.info(
+        "[$fileID] Thumbnail $i: ${(listPngBytes[i].length / 1024).toStringAsFixed(1)}KB -> ${(result[i].length / 1024).toStringAsFixed(1)}KB (${((result[i].length / listPngBytes[i].length) * 100).toStringAsFixed(1)}%)",
+      );
+    }
+
+    return result;
   } catch (e, s) {
     _logger.severe(
-      'Failed to compress face thumbnail, using original. Size: ${listPngBytes.map((e) => e.length).toList()} bytes',
+      '[$fileID] Failed to compress face thumbnails. Original sizes: ${listPngBytes.map((e) => '${(e.length / 1024).toStringAsFixed(1)}KB').toList()}',
       e,
       s,
     );

@@ -242,16 +242,28 @@ File cachedThumbnailPath(EnteFile file) {
   );
 }
 
-File cachedFaceCropPath(String faceID, bool useTempCache) {
+File cachedFaceCropPath(String faceID, bool useTempCache, [int? fileID]) {
+  final logger = Logger("FaceCropUtils");
+  logger.info(
+    "[$fileID] cachedFaceCropPath called: faceID=$faceID, useTempCache=$useTempCache",
+  );
+
   late final String thumbnailCacheDirectory;
   if (useTempCache) {
     thumbnailCacheDirectory =
         Configuration.instance.getThumbnailCacheDirectory();
+    logger
+        .info("[$fileID] Using temp cache directory: $thumbnailCacheDirectory");
   } else {
     thumbnailCacheDirectory =
         Configuration.instance.getPersonFaceThumbnailCacheDirectory();
+    logger.info(
+      "[$fileID] Using person face cache directory: $thumbnailCacheDirectory",
+    );
   }
-  return File(
-    thumbnailCacheDirectory + "/" + faceID,
-  );
+
+  final filePath = thumbnailCacheDirectory + "/" + faceID;
+  logger.info("[$fileID] Generated cache file path: $filePath");
+
+  return File(filePath);
 }
