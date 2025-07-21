@@ -31,7 +31,6 @@ class SmartAlbumPeople extends StatefulWidget {
 class _SmartAlbumPeopleState extends State<SmartAlbumPeople> {
   final _selectedPeople = SelectedPeople();
   SmartAlbumConfig? currentConfig;
-  bool isLoading = false;
 
   @override
   void initState() {
@@ -69,16 +68,11 @@ class _SmartAlbumPeopleState extends State<SmartAlbumPeople> {
               labelText: S.of(context).save,
               shouldSurfaceExecutionStates: false,
               onTap: () async {
-                if (isLoading) return;
-
-                isLoading = true;
-
                 final dialog = createProgressDialog(
                   context,
                   S.of(context).pleaseWait,
                   isDismissible: true,
                 );
-                await dialog.show();
 
                 if (_selectedPeople.personIds.length ==
                         currentConfig?.personIDs.length &&
@@ -91,6 +85,7 @@ class _SmartAlbumPeopleState extends State<SmartAlbumPeople> {
                 }
 
                 try {
+                  await dialog.show();
                   SmartAlbumConfig newConfig;
 
                   if (currentConfig == null) {
@@ -117,14 +112,15 @@ class _SmartAlbumPeopleState extends State<SmartAlbumPeople> {
                           await SmartAlbumsService.instance.removeFilesDialog(
                         context,
                       );
+                      await dialog.show();
 
                       if (toDelete) {
                         for (final personId in removedPersonIds) {
                           final files =
                               currentConfig!.infoMap[personId]?.addedFiles;
 
-                          final enteFiles =
-                              await FilesDB.instance.getFilesFromIDs(
+                          final enteFiles = await FilesDB.instance
+                              .getAllFilesGroupByCollectionID(
                             files?.toList() ?? [],
                           );
 
@@ -136,7 +132,7 @@ class _SmartAlbumPeopleState extends State<SmartAlbumPeople> {
                                 .moveFilesFromCurrentCollection(
                               context,
                               collection!,
-                              enteFiles,
+                              enteFiles[widget.collectionId] ?? [],
                               isHidden: collection.isHidden(),
                             );
                           }
@@ -151,9 +147,9 @@ class _SmartAlbumPeopleState extends State<SmartAlbumPeople> {
                   await SmartAlbumsService.instance.saveConfig(newConfig);
                   SmartAlbumsService.instance.syncSmartAlbums().ignore();
 
+                  await dialog.hide();
                   Navigator.pop(context);
                 } catch (e) {
-                  isLoading = false;
                   await dialog.hide();
                   await showGenericErrorDialog(context: context, error: e);
                 }
