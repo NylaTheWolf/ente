@@ -57,9 +57,10 @@ const kLastFGTaskHeartBeatTime = "fg_task_hb_time";
 const kHeartBeatFrequency = Duration(seconds: 1);
 const kFGSyncFrequency = Duration(minutes: 5);
 const kFGHomeWidgetSyncFrequency = Duration(minutes: 15);
-const kBGTaskTimeout = Duration(seconds: 28);
+const kBGTaskTimeout = Duration(seconds: 58);
 const kBGPushTimeout = Duration(seconds: 28);
 const kFGTaskDeathTimeoutInMicroseconds = 5000000;
+bool isProcessBg = true;
 
 void main() async {
   debugRepaintRainbowEnabled = false;
@@ -86,6 +87,7 @@ void main() async {
 Future<void> _runInForeground(AdaptiveThemeMode? savedThemeMode) async {
   return await runWithLogs(() async {
     _logger.info("Starting app in foreground");
+    isProcessBg = false;
     await _init(false, via: 'mainMethod');
     final Locale? locale = await getLocale(noFallback: true);
     runApp(
@@ -306,7 +308,7 @@ void logLocalSettings() {
   );
   _logger.info("Gallery grid size: ${localSettings.getPhotoGridSize()}");
   _logger.info(
-    "Video streaming is enalbed: ${VideoPreviewService.instance.isVideoStreamingEnabled}",
+    "Video streaming is enabled: ${VideoPreviewService.instance.isVideoStreamingEnabled}",
   );
 }
 

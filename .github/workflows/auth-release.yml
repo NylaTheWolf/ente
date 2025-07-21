@@ -29,7 +29,7 @@ on:
             - "auth-v*"
 
 env:
-    FLUTTER_VERSION: "3.24.3"
+    FLUTTER_VERSION: "3.29.3"
 
 permissions:
     contents: write
@@ -98,7 +98,7 @@ jobs:
 
             - name: Install appimagetool
               run: |
-                  wget -O appimagetool "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+                  wget -O appimagetool "https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage"
                   chmod +x appimagetool
                   mv appimagetool /usr/local/bin/
 
