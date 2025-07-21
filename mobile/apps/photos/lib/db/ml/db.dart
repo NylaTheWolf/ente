@@ -316,28 +316,48 @@ class MLDataDB with SqlDbBase implements IMLDataDB<int> {
     // read person from db
     final db = await instance.asyncDB;
     if (personID != null) {
+      logger.info("[$recentFileID] Processing personID path: $personID");
       final List<int> fileId = [recentFileID];
+      logger.info("[$recentFileID] Initial fileId list: $fileId");
+
       int? avatarFileId;
       if (avatarFaceId != null) {
+        logger.info(
+          "[$recentFileID] Looking up avatarFileId for avatarFaceId: $avatarFaceId",
+        );
         avatarFileId = tryGetFileIdFromFaceId(avatarFaceId);
+        logger.info("[$recentFileID] avatarFileId result: $avatarFileId");
         if (avatarFileId != null) {
           fileId.add(avatarFileId);
+          logger.info(
+            "[$recentFileID] Updated fileId list with avatarFileId: $fileId",
+          );
         }
+      } else {
+        logger.info("[$recentFileID] No avatarFaceId provided");
       }
       const String queryClusterID = '''
         SELECT $clusterIDColumn
         FROM $clusterPersonTable
         WHERE $personIdColumn = ?
       ''';
+      logger.info(
+        "[$recentFileID] Executing cluster query for personID: $personID",
+      );
+
       final clusterRows = await db.getAll(
         queryClusterID,
         [personID],
       );
+      logger.info(
+        "[$recentFileID] Found ${clusterRows.length} cluster rows: $clusterRows",
+      );
+
       final clusterIDs =
           clusterRows.map((e) => e[clusterIDColumn] as String).toList();
+      logger.info("[$recentFileID] Extracted clusterIDs: $clusterIDs");
 
-      final List<Map<String, dynamic>> faceMaps = await db.getAll(
-        '''
+      final faceQuery = '''
         SELECT * FROM $facesTable
         WHERE $faceIDColumn IN (
         SELECT $faceIDColumn
@@ -346,56 +366,192 @@ class MLDataDB with SqlDbBase implements IMLDataDB<int> {
         )
         AND $fileIDColumn IN (${List.filled(fileId.length, '?').join(',')})
         ORDER BY $faceScore DESC
-        ''',
-        [...clusterIDs, ...fileId],
+        ''';
+      final queryParams = [...clusterIDs, ...fileId];
+
+      logger.info(
+        "[$recentFileID] Executing face query with ${clusterIDs.length} clusterIDs and ${fileId.length} fileIDs",
       );
+      logger.info("[$recentFileID] Face query: $faceQuery");
+      logger.info("[$recentFileID] Query parameters: $queryParams");
+
+      final List<Map<String, dynamic>> faceMaps = await db.getAll(
+        faceQuery,
+        queryParams,
+      );
+      logger.info("[$recentFileID] Found ${faceMaps.length} face maps");
       if (faceMaps.isNotEmpty) {
+        logger.info(
+          "[$recentFileID] Found ${faceMaps.length} faces, processing selection",
+        );
         if (avatarFileId != null) {
+          logger.info(
+            "[$recentFileID] Looking for face with avatarFileId: $avatarFileId",
+          );
           final row = faceMaps.firstWhereOrNull(
             (element) => (element[fileIDColumn] as int) == avatarFileId,
           );
           if (row != null) {
-            return mapRowToFace(row);
+            logger.info(
+              "[$recentFileID] Found avatar face, returning: ${row[faceIDColumn]}",
+            );
+            final face = mapRowToFace(row);
+            logger.info(
+              "[$recentFileID] getCoverFaceForPerson SUCCESS (avatar): returning face ${face.faceID}",
+            );
+            return face;
+          } else {
+            logger.info(
+              "[$recentFileID] Avatar face not found in results, falling back to first face",
+            );
           }
         }
-        return mapRowToFace(faceMaps.first);
-      } else if (clusterID == null) {
-        _logger.severe(
-          "Didn't find any faces for personID $personID in `getCoverFaceForPerson`. fileID: $fileId, clusterIDs: $clusterIDs",
+        logger.info(
+          "[$recentFileID] Returning first face: ${faceMaps.first[faceIDColumn]}",
         );
+        final face = mapRowToFace(faceMaps.first);
+        logger.info(
+          "[$recentFileID] getCoverFaceForPerson SUCCESS (first): returning face ${face.faceID}",
+        );
+        return face;
+      } else {
+        // Diagnostic queries to understand why faceMaps is empty
+        logger.info(
+          "[$recentFileID] faceMaps is empty, running diagnostic queries",
+        );
+
+        // Test 1: Check if faces exist in faceClustersTable for these clusterIDs
+        if (clusterIDs.isNotEmpty) {
+          final faceIDsInClusters = await db.getAll(
+            '''
+            SELECT $faceIDColumn
+            FROM $faceClustersTable
+            WHERE $clusterIDColumn IN (${List.filled(clusterIDs.length, '?').join(',')})
+            ''',
+            clusterIDs,
+          );
+          logger.info(
+            "[$recentFileID] Found ${faceIDsInClusters.length} faceIDs in faceClustersTable for clusterIDs: ${faceIDsInClusters.map((e) => e[faceIDColumn]).toList()}",
+          );
+
+          // Test 2: Check if any of those faces exist in facesTable
+          if (faceIDsInClusters.isNotEmpty) {
+            final faceIDsFromClusters = faceIDsInClusters
+                .map((e) => e[faceIDColumn] as String)
+                .toList();
+            final facesInFacesTable = await db.getAll(
+              '''
+              SELECT $faceIDColumn, $fileIDColumn
+              FROM $facesTable
+              WHERE $faceIDColumn IN (${List.filled(faceIDsFromClusters.length, '?').join(',')})
+              ''',
+              faceIDsFromClusters,
+            );
+            logger.info(
+              "[$recentFileID] Found ${facesInFacesTable.length} faces in facesTable: ${facesInFacesTable.map((e) => '${e[faceIDColumn]}(file:${e[fileIDColumn]})').toList()}",
+            );
+
+            // Test 3: Check if any of those faces are for our target fileIDs
+            final facesForTargetFiles = facesInFacesTable
+                .where(
+                  (face) => fileId.contains(face[fileIDColumn] as int),
+                )
+                .toList();
+            logger.info(
+              "[$recentFileID] Found ${facesForTargetFiles.length} faces for target fileIDs $fileId: ${facesForTargetFiles.map((e) => '${e[faceIDColumn]}(file:${e[fileIDColumn]})').toList()}",
+            );
+          } else {
+            logger.info(
+              "[$recentFileID] No faceIDs found in faceClustersTable for these clusterIDs",
+            );
+          }
+        } else {
+          logger.info("[$recentFileID] No clusterIDs to check");
+        }
+
+        // Test 4: Check if there are any faces at all for the target fileIDs
+        final allFacesForFiles = await db.getAll(
+          '''
+          SELECT $faceIDColumn, $fileIDColumn
+          FROM $facesTable
+          WHERE $fileIDColumn IN (${List.filled(fileId.length, '?').join(',')})
+          ''',
+          fileId,
+        );
+        logger.info(
+          "[$recentFileID] Found ${allFacesForFiles.length} total faces for fileIDs $fileId: ${allFacesForFiles.map((e) => '${e[faceIDColumn]}(file:${e[fileIDColumn]})').toList()}",
+        );
+
+        if (clusterID == null) {
+          logger.severe(
+            "[$recentFileID] Didn't find any faces for personID $personID in getCoverFaceForPerson. fileID: $fileId, clusterIDs: $clusterIDs",
+          );
+        } else {
+          logger.info(
+            "[$recentFileID] No faces found for personID, but clusterID provided, will try clusterID path",
+          );
+        }
       }
     }
     if (clusterID != null) {
+      logger.info("[$recentFileID] Processing clusterID path: $clusterID");
       const String queryFaceID = '''
         SELECT $faceIDColumn
         FROM $faceClustersTable
         WHERE $clusterIDColumn = ?
       ''';
+      logger.info(
+        "[$recentFileID] Executing faceID query for clusterID: $clusterID",
+      );
+      logger.info("[$recentFileID] Query: $queryFaceID");
+
       final List<Map<String, dynamic>> faceMaps = await db.getAll(
         queryFaceID,
         [clusterID],
       );
+      logger.info(
+        "[$recentFileID] Found ${faceMaps.length} face mappings for cluster: ${faceMaps.map((e) => e[faceIDColumn]).toList()}",
+      );
+
       final List<Face>? faces = await getFacesForGivenFileID(recentFileID);
+      logger.info(
+        "[$recentFileID] getFacesForGivenFileID returned ${faces?.length ?? 0} faces: ${faces?.map((f) => f.faceID).toList() ?? []}",
+      );
+
       if (faces != null) {
+        logger.info(
+          "[$recentFileID] Searching for matching face in ${faces.length} faces",
+        );
         for (final face in faces) {
-          if (faceMaps.any(
+          final isMatch = faceMaps.any(
             (element) => (element[faceIDColumn] as String) == face.faceID,
-          )) {
+          );
+          logger.info(
+            "[$recentFileID] Checking face ${face.faceID}: match=$isMatch",
+          );
+          if (isMatch) {
+            logger.info(
+              "[$recentFileID] getCoverFaceForPerson SUCCESS (cluster): returning face ${face.faceID}",
+            );
             return face;
           }
         }
+        logger.info(
+          "[$recentFileID] No matching faces found in file for clusterID",
+        );
       } else {
-        _logger.severe(
-          "Didn't find any faces for clusterID $clusterID in `getCoverFaceForPerson`. faces: $faces",
+        logger.severe(
+          "[$recentFileID] Didn't find any faces for clusterID $clusterID in getCoverFaceForPerson. faces: $faces",
         );
       }
     }
     if (personID == null && clusterID == null) {
-      _logger.severe("personID and clusterID cannot be null both");
+      logger
+          .severe("[$recentFileID] personID and clusterID cannot be null both");
       throw Exception("personID and clusterID cannot be null");
     }
-    _logger.severe(
-      "Something went wrong finding a face from `getCoverFaceForPerson` (personID: $personID, clusterID: $clusterID)",
+    logger.severe(
+      "[$recentFileID] getCoverFaceForPerson FAILED: No face found (personID: $personID, clusterID: $clusterID)",
     );
     return null;
   }
