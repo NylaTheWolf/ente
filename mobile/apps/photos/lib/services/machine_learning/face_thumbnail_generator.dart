@@ -7,6 +7,7 @@ import "package:photos/services/isolate_functions.dart";
 import "package:photos/services/isolate_service.dart";
 import "package:photos/utils/image_ml_util.dart";
 
+@pragma('vm:entry-point')
 class FaceThumbnailGenerator extends SuperIsolate {
   @override
   Logger get logger => _logger;
