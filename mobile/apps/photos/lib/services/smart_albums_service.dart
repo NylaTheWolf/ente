@@ -9,7 +9,7 @@ import "package:photos/models/api/entity/type.dart";
 import "package:photos/models/collection/smart_album_config.dart";
 import "package:photos/models/file/file.dart";
 import "package:photos/models/local_entity_data.dart";
-import "package:photos/service_locator.dart" show entityService;
+import "package:photos/service_locator.dart" show entityService, flagService;
 import "package:photos/services/collections_service.dart";
 import "package:photos/services/search_service.dart";
 
@@ -80,16 +80,22 @@ class SmartAlbumsService {
   }
 
   Future<void> syncSmartAlbums() async {
+    final isMLEnabled = flagService.hasGrantedMLConsent;
+    if (!isMLEnabled) {
+      _logger.warning("ML is not enabled, skipping smart album sync");
+      return;
+    }
+
     final cachedConfigs = await getSmartConfigs();
-    final userId = Configuration.instance.getUserID();
+    final userId = Configuration.instance.getUserID()!;
 
     for (final entry in cachedConfigs.entries) {
       final collectionId = entry.key;
       final config = entry.value;
       final collection =
-          CollectionsService.instance.getCollectionByID(collectionId)!;
+          CollectionsService.instance.getCollectionByID(collectionId);
 
-      if (!collection.canAutoAdd(userId!)) {
+      if (!(collection?.canAutoAdd(userId) ?? false)) {
         _logger.warning(
           "Deleting collection config ($collectionId) as user does not have permission",
         );
@@ -113,7 +119,8 @@ class SmartAlbumsService {
         config.personIDs.toList(),
       );
 
-      Set<EnteFile> toBeSynced = {};
+      Map<String, Set<int>> pendingSyncFiles = {};
+      Set<EnteFile> pendingSyncFileSet = {};
 
       var newConfig = config;
       for (final personId in config.personIDs) {
@@ -137,13 +144,11 @@ class SmartAlbumsService {
                 e.ownerID != userId,
           );
 
-        toBeSynced = {...toBeSynced, ...fileIds};
-
-        newConfig = await newConfig.addFiles(
-          personId,
-          updatedAtMap[personId]!,
-          toBeSynced.map((e) => e.uploadedFileID!).toSet(),
-        );
+        pendingSyncFiles = {
+          ...pendingSyncFiles,
+          personId: fileIds.map((e) => e.uploadedFileID!).toSet(),
+        };
+        pendingSyncFileSet = {...pendingSyncFileSet, ...fileIds};
       }
 
       syncingCollection = (collectionId, true);
@@ -151,13 +156,14 @@ class SmartAlbumsService {
         SmartAlbumSyncingEvent(collectionId: collectionId, isSyncing: true),
       );
 
-      if (toBeSynced.isNotEmpty) {
+      if (pendingSyncFiles.isNotEmpty) {
         try {
           await CollectionsService.instance.addOrCopyToCollection(
-            toCopy: false,
             collectionId,
-            toBeSynced.toList(),
+            pendingSyncFileSet.toList(),
+            toCopy: false,
           );
+          newConfig = newConfig.addFiles(updatedAtMap, pendingSyncFiles);
 
           await saveConfig(newConfig);
         } catch (_) {}
