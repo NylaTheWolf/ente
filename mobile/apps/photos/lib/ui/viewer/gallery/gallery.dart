@@ -13,7 +13,7 @@ import 'package:photos/events/files_updated_event.dart';
 import 'package:photos/events/tab_changed_event.dart';
 import 'package:photos/models/file/file.dart';
 import 'package:photos/models/file_load_result.dart';
-import "package:photos/models/gallery/gallery_sections.dart";
+import "package:photos/models/gallery/gallery_groups.dart";
 import "package:photos/models/gallery_type.dart";
 import 'package:photos/models/selected_files.dart';
 import "package:photos/service_locator.dart";
@@ -85,7 +85,6 @@ class Gallery extends StatefulWidget {
   final GroupType? groupType;
   final bool disablePinnedGroupHeader;
   final bool disableVerticalPaddingForScrollbar;
-  final EnteFile? fileToJumpScrollTo;
 
   const Gallery({
     required this.asyncLoader,
@@ -114,7 +113,6 @@ class Gallery extends StatefulWidget {
     this.disablePinnedGroupHeader = false,
     this.galleryType,
     this.disableVerticalPaddingForScrollbar = false,
-    this.fileToJumpScrollTo,
     this.showGallerySettingsCTA = false,
     super.key,
   });
@@ -858,7 +856,8 @@ class _PinnedGroupHeaderState extends State<PinnedGroupHeader> {
                           .galleryGroups.groupIDToFilesMap[currentGroupId!]!,
                       selectedFiles: widget.selectedFiles,
                       showSelectAll: widget.showSelectAll,
-                      showGallerySettingCTA: widget.showGallerySettingsCTA,
+                      showGalleryLayoutSettingCTA:
+                          widget.showGallerySettingsCTA,
                       showTrailingIcons: !inUse,
                       isPinnedHeader: true,
                       fadeInTrailingIcons: fadeInTrailingIcons,

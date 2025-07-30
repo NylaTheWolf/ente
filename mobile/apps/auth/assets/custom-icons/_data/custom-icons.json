@@ -400,6 +400,25 @@
       ]
     },
     {
+      "title": "U.S. Department of Homeland Security",
+      "slug": "us_dhs",
+      "altNames": [
+        "DHS",
+        "dhs",
+        "United States Department of Homeland Security",
+        "uscis",
+        "USCIS",
+        "U.S. Citizenship and Immigration Services",
+        "cbp",
+        "CBP",
+        "U.S. Customs and Border Protection",
+        "U.S. Immigration and Customs Enforcement",
+        "ice",
+        "ICE"
+      ],
+      "hex": "005189"
+    },
+    {
       "title": "DCS",
       "altNames": [
         "Digital Combat Simulator"
@@ -496,6 +515,14 @@
         "EVE Online"
       ],
       "hex": "858585"
+    },
+    {
+      "title": "exaroton",
+      "slug": "exaroton",
+      "altNames": [
+        "Exaroton"
+      ],
+      "hex": "17AB17"
     },
     {
       "title": "Fanatical",
@@ -1031,6 +1058,11 @@
       "title": "Notion"
     },
     {
+      "title": "NumberBarn",
+      "slug": "numberbarn",
+      "hex": "1c5787"
+    },
+    {
       "title": "NuCommunity"
     },
     {
@@ -1266,6 +1298,18 @@
     {
       "title": "Rockstar Games",
       "slug": "rockstar_games"
+    },
+    {
+      "title": "Rose-Hulman Institute of Technology",
+      "slug": "rose_hulman",
+      "altNames": [
+        "rose-hulman",
+        "Rose-Hulman",
+        "Rose Hulman",
+        "Rose Hulman Institute of Technology",
+        "RHIT"
+      ],
+      "hex": "800000"
     },
     {
       "title": "RuneMate"
