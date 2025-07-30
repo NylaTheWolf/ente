@@ -307,6 +307,16 @@
       "title": "ChangeNOW"
     },
     {
+      "title": "Charles Schwab",
+      "slug": "charles_schwab",
+      "altNames": [
+        "schwab",
+        "charles-schwab",
+        "charles schwab"
+      ],
+      "hex": "01A0E0"
+    },
+    {
       "title": "Channel Island Hosting",
       "slug": "cih",
       "hex": "D14633"
@@ -1432,6 +1442,15 @@
     },
     {
       "title": "Tableau"
+    },
+    {
+      "title": "Tally.so",
+      "slug": "tally_so",
+      "altNames": [
+        "Tally Forms",
+        "Tally"
+      ],
+      "hex": "000000"
     },
     {
       "title": "TCPShield"
