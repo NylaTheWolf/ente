@@ -595,21 +595,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Oferta del Black Friday"),
         "blog": MessageLookupByLibrary.simpleMessage("Blog"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "Dado el trabajo que hemos hecho en la versión beta de vídeos en streaming y en las cargas y descargas reanudables, hemos aumentado el límite de subida de archivos a 10 GB. Esto ya está disponible tanto en la aplicación de escritorio como en la móvil."),
+            "Estamos lanzando un nuevo y avanzado editor de imágenes que añade más marcos de recorte, presets de filtros para ediciones rápidas, opciones de ajuste fino incluyendo saturación, contraste, brillo, temperatura y mucho más. El nuevo editor también incluye la capacidad de dibujar en tus fotos y añadir emojis como stickers."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Las subidas en segundo plano ya están también soportadas en iOS, además de los dispositivos Android. No es necesario abrir la aplicación para hacer una copia de seguridad de tus fotos y vídeos más recientes."),
+            "Ahora puedes añadir automáticamente fotos de personas seleccionadas a cualquier álbum. Solo ve al álbum y selecciona \"auto-añadir personas\" desde el menú overflow. Si se usa junto con un álbum compartido, puedes compartir fotos con cero clics."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Hemos hecho mejoras significativas en nuestra experiencia de recuerdos, incluyendo la reproducción automática, el deslizado a la memoria siguiente y mucho más."),
+            "Hemos añadido la capacidad de agrupar tu galería por semanas, meses y años. Ahora puedes personalizar tu galería para que se vea exactamente como quieres con estas nuevas opciones de agrupación, junto con cuadrículas personalizadas."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Junto con un montón de mejoras adicionales, ahora es mucho más fácil ver todas las caras detectadas, proporcionar comentarios sobre caras similares, y añadir o quitar caras de una sola foto."),
-        "cLTitle1": MessageLookupByLibrary.simpleMessage(
-            "Subiendo archivos de vídeo grandes"),
+            "Junto con un montón de mejoras internas para mejorar la experiencia de desplazamiento de la galería, también hemos rediseñado la barra de desplazamiento para mostrar marcadores, permitiéndote saltar rápidamente a través de la línea de tiempo."),
+        "cLTitle1":
+            MessageLookupByLibrary.simpleMessage("Editor de imágenes avanzado"),
         "cLTitle2":
-            MessageLookupByLibrary.simpleMessage("Subida en segundo plano"),
-        "cLTitle3": MessageLookupByLibrary.simpleMessage(
-            "Reproducción automática de recuerdos"),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage(
-            "Reconocimiento facial mejorado"),
+            MessageLookupByLibrary.simpleMessage("Álbumes inteligentes"),
+        "cLTitle3": MessageLookupByLibrary.simpleMessage("Galería mejorada"),
+        "cLTitle4":
+            MessageLookupByLibrary.simpleMessage("Desplazamiento más rápido"),
         "cachedData":
             MessageLookupByLibrary.simpleMessage("Datos almacenados en caché"),
         "calculating": MessageLookupByLibrary.simpleMessage("Calculando..."),

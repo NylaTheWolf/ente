@@ -587,20 +587,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Promoção Black Friday"),
         "blog": MessageLookupByLibrary.simpleMessage("Blog"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "De volta na transmissão de vídeo beta, e trabalhando em envios e downloads retomáveis, nós aumentamos o limite de envio de arquivos para 10 GB. Isso está disponível em ambos a versão móvel e a versão para desktop."),
+            "Aprimore suas fotos com novas ferramentas de edição profissional. Ajuste brilho, contraste, saturação e aplique filtros para criar imagens perfeitas."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Envios de fundo agora são suportados no iOS também, para assemelhar-se aos dispositivos Android. Não precisa abrir o aplicativo para salvar em segurança as fotos e vídeos mais recentes."),
+            "Organize suas fotos automaticamente com álbuns inteligentes baseados em localização, pessoas e objetos detectados por IA."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Fizemos melhorias significantes para a experiência de memórias, incluindo reprodução automática, deslizar para a próxima memória e mais."),
+            "Interface renovada com melhor navegação, visualizações em grade otimizadas e controles de zoom mais suaves para uma experiência visual superior."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Ao lado de outras melhorias, agora ficou mais fácil para detectar rostos, fornecer comentários em rostos similares, e adicionar/remover rostos de uma foto."),
-        "cLTitle1": MessageLookupByLibrary.simpleMessage(
-            "Enviando arquivos de vídeo grandes"),
-        "cLTitle2": MessageLookupByLibrary.simpleMessage("Envio de fundo"),
-        "cLTitle3":
-            MessageLookupByLibrary.simpleMessage("Reproduzir memórias auto."),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage(
-            "Reconhecimento Facial Melhorado"),
+            "Navegue por sua coleção de fotos com velocidade aprimorada e transições mais fluidas, tornando a exploração de memórias mais eficiente."),
+        "cLTitle1":
+            MessageLookupByLibrary.simpleMessage("Editor de Imagem Avançado"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("Álbuns Inteligentes"),
+        "cLTitle3": MessageLookupByLibrary.simpleMessage("Galeria Aprimorada"),
+        "cLTitle4": MessageLookupByLibrary.simpleMessage("Rolagem Mais Rápida"),
         "cachedData":
             MessageLookupByLibrary.simpleMessage("Dados armazenados em cache"),
         "calculating": MessageLookupByLibrary.simpleMessage("Calculando..."),

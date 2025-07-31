@@ -516,17 +516,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "blackFridaySale": MessageLookupByLibrary.simpleMessage("黑色星期五特惠"),
         "blog": MessageLookupByLibrary.simpleMessage("博客"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "在视频流媒体测试版和可恢复上传与下载功能的基础上，我们现已将文件上传限制提高到10GB。此功能现已在桌面和移动应用程序中可用。"),
+            "我们发布了全新的高级图像编辑器，增加了更多裁剪框架、用于快速编辑的滤镜预设、包括饱和度、对比度、亮度、色温等精细调节选项以及更多功能。新编辑器还包括在照片上绘画和添加表情符号贴纸的功能。"),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "现在 iOS 设备也支持后台上传，Android 设备早已支持。无需打开应用程序即可备份最新的照片和视频。"),
+            "您现在可以自动将所选人物的照片添加到任何相册中。只需进入相册，从溢出菜单中选择\"自动添加人物\"。如果与共享相册一起使用，您可以零点击分享照片。"),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "我们对回忆体验进行了重大改进，包括自动播放、滑动到下一个回忆以及更多功能。"),
+            "我们增加了按周、月、年对图库进行分组的功能。您现在可以使用这些新的分组选项以及自定义网格来定制您的图库，使其完全符合您的需求。"),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "除了多项底层改进外，现在可以更轻松地查看所有检测到的人脸，对相似人脸提供反馈，以及从单张照片中添加/删除人脸。"),
-        "cLTitle1": MessageLookupByLibrary.simpleMessage("正在上传大型视频文件"),
-        "cLTitle2": MessageLookupByLibrary.simpleMessage("后台上传"),
-        "cLTitle3": MessageLookupByLibrary.simpleMessage("自动播放回忆"),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage("改进的人脸识别"),
+            "除了一系列底层改进来提升图库滚动体验外，我们还重新设计了滚动条以显示标记，让您可以快速跳转到时间轴的任何位置。"),
+        "cLTitle1": MessageLookupByLibrary.simpleMessage("高级图像编辑器"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("智能相册"),
+        "cLTitle3": MessageLookupByLibrary.simpleMessage("改进的图库"),
+        "cLTitle4": MessageLookupByLibrary.simpleMessage("更快的滚动"),
         "cachedData": MessageLookupByLibrary.simpleMessage("缓存数据"),
         "calculating": MessageLookupByLibrary.simpleMessage("正在计算..."),
         "canNotOpenBody":

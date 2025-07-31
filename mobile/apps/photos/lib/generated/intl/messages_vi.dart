@@ -586,20 +586,18 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Giảm giá Black Friday"),
         "blog": MessageLookupByLibrary.simpleMessage("Blog"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "Sau bản beta phát trực tuyến video và làm việc trên các bản có thể tiếp tục tải lên và tải xuống, chúng tôi hiện đã tăng giới hạn tải lên tệp tới 10 GB. Tính năng này hiện khả dụng trên cả ứng dụng dành cho máy tính để bàn và di động."),
+            "Chúng tôi phát hành trình chỉnh sửa ảnh mới và nâng cao với nhiều khung cắt, bộ lọc sẵn có để chỉnh sửa nhanh, tùy chọn tinh chỉnh bao gồm độ bão hòa, độ tương phản, độ sáng, nhiệt độ màu và nhiều hơn nữa. Trình chỉnh sửa mới cũng bao gồm khả năng vẽ trên ảnh và thêm emoji làm nhãn dán."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Tải lên trong nền hiện đã hỗ trợ trên iOS và Android. Không cần phải mở ứng dụng để sao lưu ảnh và video mới nhất của bạn."),
+            "Giờ đây bạn có thể tự động thêm ảnh của những người đã chọn vào bất kỳ album nào. Chỉ cần vào album và chọn \"tự động thêm người\" từ menu tùy chọn. Nếu sử dụng cùng với album chia sẻ, bạn có thể chia sẻ ảnh mà không cần nhấp chuột."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Chúng tôi đã có những cải tiến đáng kể cho trải nghiệm kỷ niệm, bao gồm tự phát, vuốt xem kỷ niệm tiếp theo và nhiều tính năng khác."),
+            "Chúng tôi đã thêm khả năng nhóm thư viện của bạn theo tuần, tháng và năm. Giờ đây bạn có thể tùy chỉnh thư viện để trông chính xác theo cách bạn muốn với các tùy chọn nhóm mới này, cùng với lưới tùy chỉnh."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Cùng với một loạt cải tiến nội bộ, giờ đây bạn có thể dễ dàng xem tất cả khuôn mặt đã phát hiện, cung cấp phản hồi về các khuôn mặt giống nhau và thêm/xóa khuôn mặt khỏi một bức ảnh."),
-        "cLTitle1":
-            MessageLookupByLibrary.simpleMessage("Tải lên tệp video lớn"),
-        "cLTitle2": MessageLookupByLibrary.simpleMessage("Tải lên trong nền"),
-        "cLTitle3":
-            MessageLookupByLibrary.simpleMessage("Tự động phát kỷ niệm"),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage(
-            "Cải thiện nhận diện khuôn mặt"),
+            "Cùng với một loạt cải tiến bên trong để cải thiện trải nghiệm cuộn thư viện, chúng tôi cũng đã thiết kế lại thanh cuộn để hiển thị các điểm đánh dấu, cho phép bạn nhanh chóng nhảy qua dòng thời gian."),
+        "cLTitle1": MessageLookupByLibrary.simpleMessage(
+            "Trình chỉnh sửa ảnh nâng cao"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("Album thông minh"),
+        "cLTitle3": MessageLookupByLibrary.simpleMessage("Cải thiện thư viện"),
+        "cLTitle4": MessageLookupByLibrary.simpleMessage("Cuộn nhanh hơn"),
         "cachedData": MessageLookupByLibrary.simpleMessage(
             "Dữ liệu đã lưu trong bộ nhớ đệm"),
         "calculating":

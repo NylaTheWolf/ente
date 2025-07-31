@@ -592,20 +592,20 @@ class MessageLookup extends MessageLookupByLibrary {
             "Juodojo penktadienio išpardavimas"),
         "blog": MessageLookupByLibrary.simpleMessage("Tinklaraštis"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "Po vaizdo įrašų srauto perdavimo beta versijos ir darbo prie tęsiamų įkėlimų ir atsisiuntimų, dabar padidinome failų įkėlimo ribą iki 10 GB. Tai dabar pasiekiama tiek kompiuterinėse, tiek mobiliosiose programėlėse."),
+            "Paleidžiame naują ir išplėstinį vaizdų redaktorių, kuris prideda daugiau apkarpymo rėmelių, filtrų šablonus spartiems redagavimams, tikslaus derinimo parinktis, įskaitant sodrumą, kontrastą, ryškumą, temperatūrą ir daug daugiau. Naujasis redaktorius taip pat įtraukia galimybę piešti ant nuotraukų ir pridėti šypsniukus kaip lipdukus."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Fono įkėlimai dabar palaikomi ir sistemoje „iOS“ bei „Android“ įrenginiuose. Nebereikia atverti programėlės, kad būtų galima sukurti naujausių nuotraukų ir vaizdo įrašų atsarginę kopiją."),
+            "Dabar galite automatiškai pridėti pasirinktų asmenų nuotraukas į bet kurį albumą. Tiesiog eikite į albumą ir pasirinkite „automatiškai pridėti asmenis“ iš perpildymo meniu. Jei naudojate kartu su bendrinamu albumu, galite bendrinti nuotraukas su nuliniais paspaudimais. ir sistemoje „iOS“ bei „Android“ įrenginiuose. Nebereikia atverti programėlės, kad būtų galima sukurti naujausių nuotraukų ir vaizdo įrašų atsarginę kopiją."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Mes žymiai patobulinome prisiminimų patirtį, įskaitant automatinį peržiūrėjimą, braukimą į kitą prisiminimą ir daug daugiau."),
+            "Pridėjome galimybę grupuoti galeriją pagal savaites, mėnesius ir metus. Dabar galite pritaikyti galeriją, kad ji atrodytų lygiai taip, kaip norite, su šiomis naujomis grupavimo parinktimis kartu su tinkintais tinkleliais."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Kartu su daugybe vidinių patobulinimų, dabar daug lengviau matyti visus aptiktus veidus, pateikti atsiliepimus apie panašius veidus ir pridėti / pašalinti veidus iš vienos nuotraukos."),
+            "Kartu su daugybe vidinių patobulinimų galerijos slinkimo patirčiai pagerinti, taip pat perdarėme slinkimo juostą, kad rodytų žymeklius, leidžiančius greitai šokti per laiko juostą."),
         "cLTitle1": MessageLookupByLibrary.simpleMessage(
-            "Įkeliami dideli vaizdo įrašų failai"),
-        "cLTitle2": MessageLookupByLibrary.simpleMessage("Fono įkėlimas"),
-        "cLTitle3": MessageLookupByLibrary.simpleMessage(
-            "Automatiniai peržiūros prisiminimai"),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage(
-            "Patobulintas veido atpažinimas"),
+            "Išplėstinis vaizdų redaktorius"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("Protingi albumai"),
+        "cLTitle3":
+            MessageLookupByLibrary.simpleMessage("Patobulinta galerija"),
+        "cLTitle4":
+            MessageLookupByLibrary.simpleMessage("Greitesnis slinkimas"),
         "cachedData":
             MessageLookupByLibrary.simpleMessage("Podėliuoti duomenis"),
         "calculating": MessageLookupByLibrary.simpleMessage("Skaičiuojama..."),

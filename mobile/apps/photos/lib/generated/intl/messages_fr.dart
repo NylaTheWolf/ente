@@ -598,21 +598,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Offre Black Friday"),
         "blog": MessageLookupByLibrary.simpleMessage("Blog"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "Derrière la version beta du streaming vidéo, tout en travaillant sur la reprise des chargements et téléchargements, nous avons maintenant augmenté la limite de téléchargement de fichiers à 10 Go. Ceci est maintenant disponible dans les applications bureau et mobiles."),
+            "Nous lançons un nouvel éditeur d\'images avancé qui ajoute plus de cadres de recadrage, des préréglages de filtres pour des modifications rapides, des options de réglage fin incluant la saturation, le contraste, la luminosité, la température et bien plus encore. Le nouvel éditeur inclut également la possibilité de dessiner sur vos photos et d\'ajouter des emojis comme autocollants."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Les chargements en arrière-plan sont maintenant pris en charge sur iOS, en plus des appareils Android. Inutile d\'ouvrir l\'application pour sauvegarder vos dernières photos et vidéos."),
+            "Vous pouvez maintenant ajouter automatiquement des photos de personnes sélectionnées à n\'importe quel album. Allez simplement dans l\'album et sélectionnez \"ajout automatique de personnes\" dans le menu de débordement. Si utilisé avec un album partagé, vous pouvez partager des photos en zéro clic."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Nous avons apporté des améliorations significatives à l\'expérience des souvenirs, comme la lecture automatique, la glisse vers le souvenir suivant et bien plus encore."),
+            "Nous avons ajouté la possibilité de regrouper votre galerie par semaines, mois et années. Vous pouvez maintenant personnaliser votre galerie pour qu\'elle apparaisse exactement comme vous le souhaitez avec ces nouvelles options de regroupement, ainsi que des grilles personnalisées."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Avec un tas d\'améliorations sous le capot, il est maintenant beaucoup plus facile de voir tous les visages détectés, mettre des commentaires sur des visages similaires, et ajouter/supprimer des visages depuis une seule photo."),
-        "cLTitle1": MessageLookupByLibrary.simpleMessage(
-            "Envoi de gros fichiers vidéo"),
-        "cLTitle2":
-            MessageLookupByLibrary.simpleMessage("Charger en arrière-plan"),
-        "cLTitle3": MessageLookupByLibrary.simpleMessage(
-            "Lecture automatique des souvenirs"),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage(
-            "Amélioration de la reconnaissance faciale"),
+            "Avec de nombreuses améliorations sous le capot pour améliorer l\'expérience de défilement de la galerie, nous avons également repensé la barre de défilement pour afficher des marqueurs, vous permettant de naviguer rapidement dans la chronologie."),
+        "cLTitle1":
+            MessageLookupByLibrary.simpleMessage("Éditeur d\'images avancé"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("Albums intelligents"),
+        "cLTitle3": MessageLookupByLibrary.simpleMessage("Galerie améliorée"),
+        "cLTitle4":
+            MessageLookupByLibrary.simpleMessage("Défilement plus rapide"),
         "cachedData":
             MessageLookupByLibrary.simpleMessage("Données mises en cache"),
         "calculating":

@@ -550,20 +550,18 @@ class MessageLookup extends MessageLookupByLibrary {
             "Wyprzedaż z okazji Czarnego Piątku"),
         "blog": MessageLookupByLibrary.simpleMessage("Blog"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "W związku z uruchomieniem wersji beta przesyłania strumieniowego wideo oraz pracami nad możliwością wznawiania przesyłania i pobierania plików, zwiększyliśmy limit przesyłanych plików do 10 GB. Jest to już dostępne zarówno w aplikacjach na komputery, jak i na urządzenia mobilne."),
+            "Uruchamiamy nowy i zaawansowany edytor obrazów, który dodaje więcej ramek kadrowania, presety filtrów do szybkich edycji, opcje precyzyjnego dostrojenia obejmujące nasycenie, kontrast, jasność, temperaturę i wiele więcej. Nowy edytor zawiera również możliwość rysowania na zdjęciach i dodawania emoji jako naklejek."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Funkcja przesyłania w tle jest teraz obsługiwana również na urządzeniach z systemem iOS, oprócz urządzeń z Androidem. Nie trzeba już otwierać aplikacji, aby utworzyć kopię zapasową najnowszych zdjęć i filmów."),
+            "Teraz możesz automatycznie dodawać zdjęcia wybranych osób do dowolnego albumu. Po prostu przejdź do albumu i wybierz \"automatycznie dodaj osoby\" z menu przepełnienia. Jeśli używane z udostępnionym albumem, możesz udostępniać zdjęcia bez kliknięć."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Wprowadziliśmy istotne ulepszenia w funkcji wspomnień, w tym automatyczne odtwarzanie, przesuwanie do kolejnego wspomnienia i wiele innych."),
+            "Dodaliśmy możliwość grupowania galerii według tygodni, miesięcy i lat. Możesz teraz dostosować swoją galerię tak, aby wyglądała dokładnie tak, jak chcesz, dzięki tym nowym opcjom grupowania oraz niestandardowym siatkom."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Wraz z kilkoma ulepszeniami w mechanizmie teraz znacznie łatwiej jest widzieć wszystkie wykryte twarze, zapewniać informacje zwrotne o podobnych twarzach i dodawać/usuwać twarze z jednego zdjęcia."),
-        "cLTitle1": MessageLookupByLibrary.simpleMessage(
-            "Przesyłanie Dużych Plików Wideo"),
-        "cLTitle2": MessageLookupByLibrary.simpleMessage("Przesyłanie w Tle"),
-        "cLTitle3": MessageLookupByLibrary.simpleMessage(
-            "Automatyczne Odtwarzanie Wspomnień"),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage(
-            "Ulepszone Rozpoznawanie Twarzy"),
+            "Wraz z wieloma ulepszeniami pod maską, które poprawiają doświadczenie przewijania galerii, przeprojektowaliśmy również pasek przewijania, aby pokazywał znaczniki, umożliwiając szybkie przeskakiwanie po osi czasu."),
+        "cLTitle1":
+            MessageLookupByLibrary.simpleMessage("Zaawansowany edytor obrazów"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("Inteligentne albumy"),
+        "cLTitle3": MessageLookupByLibrary.simpleMessage("Ulepszona galeria"),
+        "cLTitle4": MessageLookupByLibrary.simpleMessage("Szybsze przewijanie"),
         "cachedData":
             MessageLookupByLibrary.simpleMessage("Dane w pamięci podręcznej"),
         "calculating": MessageLookupByLibrary.simpleMessage("Obliczanie..."),

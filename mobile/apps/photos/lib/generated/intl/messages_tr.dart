@@ -584,20 +584,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Muhteşem Cuma kampanyası"),
         "blog": MessageLookupByLibrary.simpleMessage("Blog"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "Video akışı beta sürümünün arkasında ve devam ettirilebilir yüklemeler ve indirmeler üzerinde çalışırken, artık dosya yükleme sınırını 10 GB\'a çıkardık. Bu artık hem masaüstü hem de mobil uygulamalarda kullanılabilir."),
+            "Daha fazla kırpma çerçevesi, hızlı düzenlemeler için filtre ön ayarları, doygunluk, kontrast, parlaklık, sıcaklık ve çok daha fazlası dahil olmak üzere ince ayar seçenekleri ekleyen yeni ve gelişmiş bir görüntü düzenleyici yayınlıyoruz. Yeni düzenleyici ayrıca fotoğraflarınızın üzerine çizim yapabilme ve çıkartma olarak emoji ekleme özelliğini de içeriyor."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Arka plan yüklemeleri artık Android cihazlara ek olarak iOS\'ta da destekleniyor. En son fotoğraflarınızı ve videolarınızı yedeklemek için uygulamayı açmanıza gerek yok."),
+            "Artık seçili kişilerin fotoğraflarını herhangi bir albüme otomatik olarak ekleyebilirsiniz. Sadece albüme gidin ve taşma menüsünden \"otomatik kişi ekleme\"yi seçin. Paylaşılan albümle birlikte kullanılırsa, fotoğrafları sıfır tıklamayla paylaşabilirsiniz."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Otomatik oynatma, bir sonraki belleğe kaydırma ve çok daha fazlası dahil olmak üzere bellek deneyimimizde önemli iyileştirmeler yaptık."),
+            "Galerinizi haftalara, aylara ve yıllara göre gruplandırma özelliği ekledik. Artık bu yeni gruplandırma seçenekleri ve özel ızgaralarla galerinizi tam istediğiniz gibi görünecek şekilde özelleştirebilirsiniz."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Bazı arka plandaki iyileştirmelere ek olarak, artık tespit edilen tüm yüzleri görmek, benzer yüzler hakkında geri bildirimde bulunmak ve tek bir fotoğraftan yüz ekleyip çıkarmak çok daha kolay."),
+            "Galeri kaydırma deneyimini iyileştirmek için perde arkasındaki bir dizi iyileştirmenin yanı sıra, zaman çizelgesinde hızlıca atlayabilmenizi sağlayan işaretçiler göstermek için kaydırma çubuğunu da yeniden tasarladık."),
         "cLTitle1": MessageLookupByLibrary.simpleMessage(
-            "Büyük Video Dosyalarını Yükleme"),
-        "cLTitle2": MessageLookupByLibrary.simpleMessage("Arka Plan Yükleme"),
+            "Gelişmiş Görüntü Düzenleyici"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("Akıllı Albümler"),
         "cLTitle3":
-            MessageLookupByLibrary.simpleMessage("Otomatik Oynatma Anıları"),
-        "cLTitle4":
-            MessageLookupByLibrary.simpleMessage("Geliştirilmiş Yüz Tanıma"),
+            MessageLookupByLibrary.simpleMessage("Geliştirilmiş Galeri"),
+        "cLTitle4": MessageLookupByLibrary.simpleMessage("Daha Hızlı Kaydırma"),
         "cachedData":
             MessageLookupByLibrary.simpleMessage("Önbelleğe alınmış veriler"),
         "calculating": MessageLookupByLibrary.simpleMessage("Hesaplanıyor..."),

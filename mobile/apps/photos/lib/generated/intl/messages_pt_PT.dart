@@ -591,20 +591,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Promoção Black Friday"),
         "blog": MessageLookupByLibrary.simpleMessage("Blog"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "De volta aos vídeos em direto (beta), e a trabalhar em envios e transferências retomáveis, nós aumentamos o limite de envio de ficheiros para 10 GB. Isto está disponível para dispositivos Móveis e para Desktop."),
+            "Estamos a lançar um novo e avançado editor de imagem que adiciona mais molduras de recorte, predefinições de filtros para edições rápidas, opções de ajuste fino incluindo saturação, contraste, brilho, temperatura e muito mais. O novo editor também inclui a capacidade de desenhar nas suas fotos e adicionar emojis como autocolantes."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Envios de fundo agora fornecerem suporte ao iOS. Para combinar com os aparelhos Android. Não precisa abrir a aplicação para fazer backup das fotos e vídeos recentes."),
+            "Agora pode adicionar automaticamente fotos de pessoas selecionadas a qualquer álbum. Basta ir ao álbum e selecionar \"adicionar pessoas automaticamente\" no menu overflow. Se usado em conjunto com álbum partilhado, pode partilhar fotos com zero cliques."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Nós fizemos melhorias significativas para a experiência das memórias, incluindo revisão automática, arrastar até a próxima memória e muito mais."),
+            "Adicionámos a capacidade de agrupar a sua galeria por semanas, meses e anos. Agora pode personalizar a sua galeria para que fique exatamente como deseja com estas novas opções de agrupamento, juntamente com grades personalizadas."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Junto a outras mudanças, agora facilitou a maneira de ver todos os rostos detetados, fornecer comentários para rostos similares, e adicionar ou remover rostos de uma foto única."),
-        "cLTitle1": MessageLookupByLibrary.simpleMessage(
-            "A Enviar Ficheiros de Vídeo Grandes"),
-        "cLTitle2": MessageLookupByLibrary.simpleMessage("Envio de Fundo"),
-        "cLTitle3": MessageLookupByLibrary.simpleMessage(
-            "Revisão automática de memórias"),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage(
-            "Reconhecimento Facial Melhorado"),
+            "Juntamente com uma série de melhorias nos bastidores para melhorar a experiência de deslocamento da galeria, também redesenhámos a barra de deslocamento para mostrar marcadores, permitindo-lhe saltar rapidamente pela linha do tempo."),
+        "cLTitle1":
+            MessageLookupByLibrary.simpleMessage("Editor de Imagem Avançado"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("Álbuns Inteligentes"),
+        "cLTitle3": MessageLookupByLibrary.simpleMessage("Galeria Melhorada"),
+        "cLTitle4":
+            MessageLookupByLibrary.simpleMessage("Deslocamento Mais Rápido"),
         "cachedData": MessageLookupByLibrary.simpleMessage("Dados em cache"),
         "calculating": MessageLookupByLibrary.simpleMessage("Calcular..."),
         "canNotOpenBody": MessageLookupByLibrary.simpleMessage(

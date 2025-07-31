@@ -592,21 +592,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Black-Friday-Aktion"),
         "blog": MessageLookupByLibrary.simpleMessage("Blog"),
         "cLDesc1": MessageLookupByLibrary.simpleMessage(
-            "Zusammen mit der Beta-Version des Video-Streamings und der Arbeit an wiederaufnehmbarem Hoch- und Herunterladen haben wir jetzt das Limit für das Hochladen von Dateien auf 10 GB erhöht. Dies ist ab sofort sowohl in den Desktop- als auch Mobil-Apps verfügbar."),
+            "Wir veröffentlichen einen neuen und erweiterten Bildbearbeiter, der mehr Zuschnitt-Rahmen, Filter-Presets für schnelle Bearbeitungen, Feinabstimmungsoptionen einschließlich Sättigung, Kontrast, Helligkeit, Temperatur und vieles mehr hinzufügt. Der neue Editor enthält auch die Möglichkeit, auf deine Fotos zu zeichnen und Emojis als Aufkleber hinzuzufügen."),
         "cLDesc2": MessageLookupByLibrary.simpleMessage(
-            "Das Hochladen im Hintergrund wird jetzt auch unter iOS unterstützt, zusätzlich zu Android-Geräten. Es ist nicht mehr notwendig, die App zu öffnen, um die letzten Fotos und Videos zu sichern."),
+            "Du kannst jetzt automatisch Fotos von ausgewählten Personen zu jedem Album hinzufügen. Gehe einfach zum Album und wähle \"Personen automatisch hinzufügen\" aus dem Overflow-Menü. Wenn es zusammen mit einem geteilten Album verwendet wird, kannst du Fotos mit null Klicks teilen."),
         "cLDesc3": MessageLookupByLibrary.simpleMessage(
-            "Wir haben deutliche Verbesserungen an der Darstellung von Erinnerungen vorgenommen, u.a. automatische Wiedergabe, Wischen zur nächsten Erinnerung und vieles mehr."),
+            "Wir haben die Möglichkeit hinzugefügt, deine Galerie nach Wochen, Monaten und Jahren zu gruppieren. Du kannst deine Galerie jetzt genau so anpassen, wie du sie haben möchtest, mit diesen neuen Gruppierungsoptionen und benutzerdefinierten Rastern."),
         "cLDesc4": MessageLookupByLibrary.simpleMessage(
-            "Zusammen mit einer Reihe von Verbesserungen unter der Haube ist es jetzt viel einfacher, alle erkannten Gesichter zu sehen, Feedback zu ähnlichen Gesichtern geben und Gesichter für ein einzelnes Foto hinzuzufügen oder zu entfernen."),
-        "cLTitle1": MessageLookupByLibrary.simpleMessage(
-            "Lade große Videodateien hoch"),
-        "cLTitle2":
-            MessageLookupByLibrary.simpleMessage("Hochladen im Hintergrund"),
-        "cLTitle3": MessageLookupByLibrary.simpleMessage(
-            "Automatische Wiedergabe von Erinnerungen"),
-        "cLTitle4": MessageLookupByLibrary.simpleMessage(
-            "Verbesserte Gesichtserkennung"),
+            "Zusammen mit einer Reihe von Verbesserungen unter der Haube, um das Galerie-Scroll-Erlebnis zu verbessern, haben wir auch die Scrollleiste neu gestaltet, um Markierungen anzuzeigen, die es dir ermöglichen, schnell durch die Timeline zu springen."),
+        "cLTitle1":
+            MessageLookupByLibrary.simpleMessage("Erweiterter Bildbearbeiter"),
+        "cLTitle2": MessageLookupByLibrary.simpleMessage("Intelligente Alben"),
+        "cLTitle3": MessageLookupByLibrary.simpleMessage("Verbesserte Galerie"),
+        "cLTitle4":
+            MessageLookupByLibrary.simpleMessage("Schnelleres Scrollen"),
         "cachedData": MessageLookupByLibrary.simpleMessage("Daten im Cache"),
         "calculating":
             MessageLookupByLibrary.simpleMessage("Wird berechnet..."),
